@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\rhygame\drum\build\CMakeFiles\63c260a0b5c9a7b8819ff8d233a2e71c\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{8410EDB5-4917-3D6F-ABEA-99BE09D96B99}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

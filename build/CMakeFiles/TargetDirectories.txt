@@ -1,0 +1,3 @@
+D:/rhygame/drum/build/CMakeFiles/drum.dir
+D:/rhygame/drum/build/CMakeFiles/ALL_BUILD.dir
+D:/rhygame/drum/build/CMakeFiles/ZERO_CHECK.dir
