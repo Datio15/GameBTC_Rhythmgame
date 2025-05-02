@@ -20,7 +20,7 @@ void Note::render(SDL_Renderer* renderer) {
 }
 
 int Note::getY() {
-    return y;
+	return y;
 }
 
 int Note::getLane() {

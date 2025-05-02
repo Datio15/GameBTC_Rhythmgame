@@ -9,7 +9,7 @@ TextureManager::TextureManager() {
 TextureManager* TextureManager::Instance() {
     if (s_pInstance == nullptr) {
         s_pInstance = new TextureManager();
-    }
+}
     return s_pInstance;
 }
 
@@ -35,8 +35,8 @@ bool TextureManager::load(std::string id, std::string filePath, SDL_Renderer* re
 void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer* renderer) {
     auto it = textures.find(id);
     if (it != textures.end()) {
-        SDL_Rect srcRect = { 0, 0, width, height };
-        SDL_Rect destRect = { x, y, width, height };
+    SDL_Rect srcRect = { 0, 0, width, height };
+    SDL_Rect destRect = { x, y, width, height };
         SDL_RenderCopy(renderer, it->second, &srcRect, &destRect);
     }
     else {

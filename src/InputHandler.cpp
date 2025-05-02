@@ -24,22 +24,27 @@ void InputHandler::update() {
                 if (volume < 128) {
                     volume += 8;
 					SoundManager::Instance()->setMusicVolume(volume);
-                }
             }
+        }
             else if (event.key.keysym.sym == SDLK_DOWN) {
                 if (volume > 0) {
                     volume -= 8;
 					SoundManager::Instance()->setMusicVolume(volume);
-                }
-            }
+    }
+}
             break;
 
-        
-        }
-    }
+bool InputHandler::isKeyDown(SDL_Scancode key) {
+    return keystates[key];
+}
+
+bool InputHandler::isKeyPressed(SDL_Keycode key) { // Nhấn 1 lần
+    return keyPressed[key];
+}
+}
 
     keystates = SDL_GetKeyboardState(nullptr);
-}
+    }
 bool InputHandler::isKeyPressed(SDL_Keycode key) { 
     return keyPressed[key];
 }

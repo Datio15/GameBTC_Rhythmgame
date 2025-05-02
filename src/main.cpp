@@ -24,8 +24,8 @@ int main(int argc, char* argv[]) {
     while (game->running()) {
         frameStart = SDL_GetTicks();
         game->handleEvents();
-        game->update();
-        game->render();
+        game->update();        
+        game->render();        
 
         frameTime = SDL_GetTicks() - frameStart;
         if (FRAME_DELAY > frameTime) {

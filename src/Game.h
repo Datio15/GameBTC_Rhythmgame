@@ -20,7 +20,7 @@ class ParticleSystem;
 class Game {
 public:
     Game();
-    ~Game();
+	~Game();
 
     void init(const char* title, int width, int height);
     void handleEvents();

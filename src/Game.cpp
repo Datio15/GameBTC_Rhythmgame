@@ -22,12 +22,12 @@ Game::Game() :
     for (int i = 0; i < 4; i++) {
         laneEffectTime[i] = 0;
         laneEffectColor[i] = { 255, 255, 255, 50 };
-    }
 }
+        }
 
 Game::~Game() {
     clean();
-}
+        }
 
 void Game::checkNoteHit(int lane) {
     bool noteFound = false;
@@ -42,14 +42,14 @@ void Game::checkNoteHit(int lane) {
                 perfecthit++;
                 if (particleSystem) {
                     particleSystem->emitPerfectEffect(lane * 150 + 75, Judgment_Line);
-                }
+    }
                 laneEffectColor[lane] = getColorJudgment("Perfect");
                 laneEffectColor[lane].a = 50;
                 laneEffectTime[lane] = 18;
                 noteFound = true;
                 it = notes.erase(it);
                 return;
-            }
+}
             else if ((noteY >= Judgment_Line - 40 && noteY <= Judgment_Line - 21) ||
                 (noteY >= Judgment_Line + 21 && noteY <= Judgment_Line + 40)) {
                 currentJudgment = "Good";
@@ -59,7 +59,7 @@ void Game::checkNoteHit(int lane) {
                 goodhit++;
                 if (particleSystem) {
                     particleSystem->emitGoodEffect(lane * 150 + 75, Judgment_Line);
-                }
+            }
                 laneEffectColor[lane] = getColorJudgment("Good");
                 laneEffectColor[lane].a = 50;
                 laneEffectTime[lane] = 18;
@@ -90,12 +90,12 @@ void Game::checkNoteHit(int lane) {
         }
         else {
             ++it;
-        }
+    }
 
         if (combo > maxCombo) {
             maxCombo = combo;
-        }
-    }
+            }
+            }
 
     InputHandler* input = InputHandler::Instance();
     SDL_Keycode keys[4] = { SDLK_a, SDLK_s, SDLK_d, SDLK_f };
@@ -103,8 +103,8 @@ void Game::checkNoteHit(int lane) {
     if (input->isKeyPressed(keys[lane]) && !noteFound) {
         laneEffectTime[lane] = 18;
         laneEffectColor[lane] = { 255, 255, 255, 50 };
-    }
-}
+            }
+            }
 
 
 
@@ -120,32 +120,31 @@ void Game::init(const char* title, int width, int height) {
             cout << "Window creation failed: " << SDL_GetError() << endl;
             isRunning = false;
             return;
-        }
+    }
 
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
         if (renderer) {
             SDL_SetRenderDrawColor(renderer, bgColorR, bgColorG, bgColorB, 255);
             cout << "Renderer created!" << endl;
-        }
+            }
         else {
             cout << "Renderer creation failed: " << SDL_GetError() << endl;
             isRunning = false;
             return;
-        }
+            }
         int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
         if (!(IMG_Init(imgFlags) & imgFlags)) {
             cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << endl;
             isRunning = false;
             return;
-        }
+            }
 
-        // Khởi tạo âm thanh
         if (SoundManager::Instance()->init()) {
             cout << "Sound system initialized!" << endl;
         }
-        else {
+            else {
             cout << "Sound system initialization failed!" << endl;
-        }
+            }
         if (TTF_Init() == -1) {
             std::cerr << "Failed to initialize SDL_ttf: " << TTF_GetError() << std::endl;
         }
@@ -157,22 +156,21 @@ void Game::init(const char* title, int width, int height) {
 		menu->init();
 		afterGame = new AfterGame(renderer);
         particleSystem = new ParticleSystem(renderer, this);
-        // Khởi tạo random seed
         if (menu->isMenuActive()) {
             SoundManager::Instance()->playMusic("music", -1);
-        }
-		
+    }
+
         srand(static_cast<unsigned int>(time(nullptr)));
 
         score = 0;
         isRunning = true;
 		SoundManager::Instance()->setMusicVolume(58);
-    }
+            }
     else {
         cout << "SDL initialization failed: " << SDL_GetError() << endl;
         isRunning = false;
-    }
-}
+            }
+            }
 
 void Game::handleEvents() {
     if (menu->isMenuActive()) {
@@ -182,7 +180,7 @@ void Game::handleEvents() {
     else if (afterGame && afterGame->isActive()) {
         afterGame->handleEvents();
     }
-    else {
+            else {
         InputHandler* input = InputHandler::Instance();
         input->update();
         const SDL_Keycode keys[] = { SDLK_a, SDLK_s, SDLK_d, SDLK_f };
@@ -197,12 +195,12 @@ void Game::handleEvents() {
         }
         if (input->isKeyPressed(keys[3])) {
             checkNoteHit(3);
-        }
+            }
 		if (input->isKeyPressed(SDLK_ESCAPE)) {
 			SoundManager::Instance()->stopMusic();
             afterGame->results(goodhit, perfecthit, badhit, misshit, maxCombo, score);
             afterGame->init();
-		}
+        }
     }
 }
 
@@ -230,14 +228,14 @@ void Game::update() {
 		if (SoundManager::Instance()->isMusicPlaying() == false) {
             afterGame->results(goodhit, perfecthit, badhit, misshit, maxCombo, score);
             afterGame->init();
-		}
+    }
 
         Uint32 currentTime = SDL_GetTicks() - startTimeMs;
         while (nextNoteIndex < noteChart.size() && currentTime >= noteChart[nextNoteIndex].timeMs) {
             int lane = noteChart[nextNoteIndex].lane;
             notes.emplace_back(Note(lane * 150, 0, 150, 20, 6));
             nextNoteIndex++;
-        }
+    }
 
         for (auto& note : notes) note.update();
         auto it = notes.begin();
@@ -273,7 +271,7 @@ void Game::render() {
     }
     else {
         SDL_SetRenderDrawColor(renderer, bgColorR, bgColorG, bgColorB, 255);
-        SDL_RenderClear(renderer);
+    SDL_RenderClear(renderer);
 
         TextureManager::Instance()->draw("background", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, renderer);
         for (int i = 0; i < 4; i++) {
@@ -285,17 +283,17 @@ void Game::render() {
             }
         }
 
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         for (int i = 1; i < 4; i++) {
            SDL_RenderDrawLine(renderer, i * 150, 0, i * 150, SCREEN_HEIGHT);
-        }
+    }
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         SDL_RenderDrawLine(renderer, 0, Judgment_Line, SCREEN_WIDTH, Judgment_Line);
 		SDL_RenderDrawLine(renderer, 0, Judgment_Line - 20, SCREEN_WIDTH, Judgment_Line - 20);
 
-        for (auto& note : notes) {
-            note.render(renderer);
-        }
+    for (auto& note : notes) {
+        note.render(renderer);
+    }
 		if (particleSystem) {
 			particleSystem->render();
 			particleSystem->update();
@@ -363,8 +361,8 @@ void Game::render() {
             }
         }
 
-        SDL_RenderPresent(renderer);
-    }
+    SDL_RenderPresent(renderer);
+}
 }
 
 void Game::clean() {
@@ -379,7 +377,7 @@ void Game::clean() {
     }
 
     if (window) {
-        SDL_DestroyWindow(window);
+    SDL_DestroyWindow(window);
         window = nullptr;
     }
     if (particleSystem) {

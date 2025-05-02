@@ -22,4 +22,5 @@ private:
     static SoundManager* s_pInstance;
     std::map<std::string, Mix_Music*> musics;
 };
+
 #endif

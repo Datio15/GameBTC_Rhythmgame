@@ -72,7 +72,7 @@ void AfterGame::render() {
 			SDL_Texture* titleTex = SDL_CreateTextureFromSurface(renderer, titleSurf);
 
 			SDL_Rect titleRect = {
-				300 - titleSurf->w / 2, 30, // căn giữa ngang (giả sử màn hình rộng ~600px)
+				300 - titleSurf->w / 2, 30,
 				titleSurf->w,
 				titleSurf->h
 			};
@@ -117,7 +117,7 @@ void AfterGame::render() {
 		SDL_FreeSurface(rankSurf);
 		SDL_DestroyTexture(rankTex);
 
-		// Final Score label
+
 		SDL_Surface* finalLabel = TTF_RenderText_Solid(fontSmall, "Final Score", white);
 		SDL_Texture* finalLabelTex = SDL_CreateTextureFromSurface(renderer, finalLabel);
 		SDL_Rect finalLabelRect = { 250, y + 70, finalLabel->w, finalLabel->h };
@@ -125,7 +125,7 @@ void AfterGame::render() {
 		SDL_FreeSurface(finalLabel);
 		SDL_DestroyTexture(finalLabelTex);
 
-		// Final Score value
+
 		SDL_Surface* scoreSurface = TTF_RenderText_Blended(fontLarge, std::to_string(finalScore).c_str(), purple);
 		SDL_Texture* scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
 		SDL_Rect scoreDst = { 200, y + 120, scoreSurface->w, scoreSurface->h };
@@ -133,7 +133,7 @@ void AfterGame::render() {
 		SDL_FreeSurface(scoreSurface);
 		SDL_DestroyTexture(scoreTexture);
 
-		// Back to Menu button
+
 		SDL_SetRenderDrawColor(renderer, 60, 180, 220, 255);
 		SDL_RenderFillRect(renderer, &backButtonRect);
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
