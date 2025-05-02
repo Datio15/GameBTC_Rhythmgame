@@ -120,57 +120,52 @@ void Game::init(const char* title, int width, int height) {
             cout << "Window creation failed: " << SDL_GetError() << endl;
             isRunning = false;
             return;
-    }
+        }
 
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
         if (renderer) {
             SDL_SetRenderDrawColor(renderer, bgColorR, bgColorG, bgColorB, 255);
             cout << "Renderer created!" << endl;
-            }
+        }
         else {
             cout << "Renderer creation failed: " << SDL_GetError() << endl;
             isRunning = false;
             return;
-            }
+        }
         int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
         if (!(IMG_Init(imgFlags) & imgFlags)) {
             cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << endl;
             isRunning = false;
             return;
-            }
+        }
 
         if (SoundManager::Instance()->init()) {
             cout << "Sound system initialized!" << endl;
         }
-            else {
+        else {
             cout << "Sound system initialization failed!" << endl;
-            }
+        }
         if (TTF_Init() == -1) {
             std::cerr << "Failed to initialize SDL_ttf: " << TTF_GetError() << std::endl;
         }
-		fontScore = TTF_OpenFont("assets/font/Nunito.ttf", 26);
-		fontJudgment = TTF_OpenFont("assets/font/Allerta.ttf", 40);
-		fontCombo = TTF_OpenFont("assets/font/Allerta.ttf", 35);
+        fontScore = TTF_OpenFont("assets/font/Nunito.ttf", 26);
+        fontJudgment = TTF_OpenFont("assets/font/Allerta.ttf", 40);
+        fontCombo = TTF_OpenFont("assets/font/Allerta.ttf", 35);
 
-		menu = new Menu(renderer);
-		menu->init();
-		afterGame = new AfterGame(renderer);
+        menu = new Menu(renderer);
+        menu->init();
+        afterGame = new AfterGame(renderer);
         particleSystem = new ParticleSystem(renderer, this);
         if (menu->isMenuActive()) {
             SoundManager::Instance()->playMusic("music", -1);
-    }
-
-        srand(static_cast<unsigned int>(time(nullptr)));
+        }
 
         score = 0;
         isRunning = true;
-		SoundManager::Instance()->setMusicVolume(58);
-            }
-    else {
-        cout << "SDL initialization failed: " << SDL_GetError() << endl;
-        isRunning = false;
-            }
-            }
+        SoundManager::Instance()->setMusicVolume(58);
+    }
+    
+}
 
 void Game::handleEvents() {
     if (menu->isMenuActive()) {
@@ -180,7 +175,7 @@ void Game::handleEvents() {
     else if (afterGame && afterGame->isActive()) {
         afterGame->handleEvents();
     }
-            else {
+    else {
         InputHandler* input = InputHandler::Instance();
         input->update();
         const SDL_Keycode keys[] = { SDLK_a, SDLK_s, SDLK_d, SDLK_f };
@@ -271,7 +266,7 @@ void Game::render() {
     }
     else {
         SDL_SetRenderDrawColor(renderer, bgColorR, bgColorG, bgColorB, 255);
-    SDL_RenderClear(renderer);
+        SDL_RenderClear(renderer);
 
         TextureManager::Instance()->draw("background", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, renderer);
         for (int i = 0; i < 4; i++) {

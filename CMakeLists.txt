@@ -42,7 +42,7 @@ set(SOURCES
     src/SoundManager.cpp
     src/Menu.cpp
     src/AferGame.cpp
-    src/ParticleSystem.cpp# Đảm bảo file này có mặt!
+    src/ParticleSystem.cpp
 )
 
 # Liên kết thư viện

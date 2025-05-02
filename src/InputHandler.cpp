@@ -30,21 +30,14 @@ void InputHandler::update() {
                 if (volume > 0) {
                     volume -= 8;
 					SoundManager::Instance()->setMusicVolume(volume);
+                }
+            }
+        }
+        keystates = SDL_GetKeyboardState(nullptr);
     }
 }
-            break;
 
-bool InputHandler::isKeyDown(SDL_Scancode key) {
-    return keystates[key];
-}
-
-bool InputHandler::isKeyPressed(SDL_Keycode key) { // Nhấn 1 lần
+bool InputHandler::isKeyPressed(SDL_Keycode key) {
     return keyPressed[key];
 }
-}
 
-    keystates = SDL_GetKeyboardState(nullptr);
-    }
-bool InputHandler::isKeyPressed(SDL_Keycode key) { 
-    return keyPressed[key];
-}

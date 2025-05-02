@@ -8,9 +8,7 @@
 class Menu {
 private:
     SDL_Renderer* renderer;
-    bool isActive; // Trạng thái menu (hiển thị hay không)
-    // Các tài nguyên khác của menu, ví dụ: texture cho nút bấm
-    // Ví dụ: SDL_Texture* startButton
+    bool isActive;
     TTF_Font* font;
     std::string selectedMusicPath = "";
 	std::string selectedChartPath = "";
@@ -20,12 +18,12 @@ public:
     Menu(SDL_Renderer* renderer);
     ~Menu();
 
-    void init(); // Khởi tạo các tài nguyên riêng của menu (nếu cần)
-    void handleEvents(); // Xử lý input (như nhấn nút Start)
-    void update(); // Cập nhật logic của menu
-    void render(); // Vẽ menu lên màn hình
-    bool isMenuActive() const; // Kiểm tra xem menu đang hiển thị không
-    void clean(); // Giải phóng tài nguyên
+    void init();
+    void handleEvents(); 
+    void update();
+    void render();
+    bool isMenuActive() const;
+    void clean();
     std::string getSelectedMusicPath() const { return selectedMusicPath; }
     std::string getSelectedChartPath() const { return selectedChartPath; }
     std::string getSelectedImagePath() const { return selectedImagePath; }

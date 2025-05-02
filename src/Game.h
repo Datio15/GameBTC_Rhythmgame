@@ -35,17 +35,14 @@ public:
 private:
     void checkNoteHit(int lane);
 
-    // SDL components
     SDL_Window* window;
     SDL_Renderer* renderer;
 
-    // Game settings
     Uint8 bgColorR, bgColorG, bgColorB;
     const int SCREEN_HEIGHT = 780;
     const int SCREEN_WIDTH = 600;
     const int Judgment_Line = SCREEN_HEIGHT - 100;
 
-    // Game state
     bool isRunning;
     bool isPlaying;
     bool musicBackgr;
@@ -59,7 +56,7 @@ private:
 	std::string currentJudgment;
 	int comboDisplayTime;
     int timeJudgment = 0;
-    int laneEffectTime[4]; // Thời gian hiển thị hiệu ứng lane (0, 1, 2, 3)
+    int laneEffectTime[4];
     SDL_Color laneEffectColor[4];
     bool prevKeystates[4];
     Menu* menu;
@@ -75,4 +72,4 @@ private:
     Uint32 startTimeMs = 0;
 };
 
-#endif // GAME_H
+#endif
