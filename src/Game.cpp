@@ -234,7 +234,7 @@ void Game::update() {
 
         for (auto& note : notes) note.update();
         auto it = notes.begin();
-        while (it != notes.end()) {
+        if (it != notes.end()) {
             if (it->isOffScreen()) {
                 currentJudgment = "Miss"; timeJudgment = 60;
                 combo = 0; misshit++;
