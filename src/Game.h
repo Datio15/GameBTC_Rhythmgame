@@ -44,8 +44,6 @@ private:
     const int Judgment_Line = SCREEN_HEIGHT - 100;
 
     bool isRunning;
-    bool isPlaying;
-    bool musicBackgr;
     int score = 0;
     int combo = 0;
     int perfecthit = 0;
@@ -58,7 +56,6 @@ private:
     int timeJudgment = 0;
     int laneEffectTime[4];
     SDL_Color laneEffectColor[4];
-    bool prevKeystates[4];
     Menu* menu;
     AfterGame* afterGame;
 	TTF_Font* fontScore;
