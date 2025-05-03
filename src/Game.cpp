@@ -172,7 +172,7 @@ void Game::handleEvents() {
         menu->handleEvents();
        
     }
-    else if (afterGame && afterGame->isActive()) {
+    else if (afterGame->isActive()) {
         afterGame->handleEvents();
     }
     else {
