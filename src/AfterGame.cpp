@@ -52,9 +52,6 @@ void AfterGame::results(int good, int perfect, int bad, int missed, int maxCombo
 }
 void AfterGame::handleEvents() {
 	InputHandler::Instance()->update();
-	if (InputHandler::Instance()->isKeyPressed(SDLK_ESCAPE)) {
-		active = false;
-	}
 	if (InputHandler::Instance()->isKeyPressed(SDLK_SPACE)) {
 		returnMenu = true;
 	}
