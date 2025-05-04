@@ -50,7 +50,7 @@ public:
 
 private:
     SDL_Renderer* renderer;
-    Game* game; // Con trỏ tới Game để truy cập getColorJudgment
+    Game* game;
     std::vector<Particle> particles;
     std::mt19937 rng;
 
@@ -60,4 +60,4 @@ private:
     void emitRingEffect(int x, int y, SDL_Color color, int count);
     void emitBurst(int x, int y, SDL_Color color, int count);
 };
-#endif // PARTICLESYSTEM_H
+#endif
