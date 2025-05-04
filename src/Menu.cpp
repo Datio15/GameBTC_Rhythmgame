@@ -31,7 +31,7 @@ void Menu::handleEvents() {
         selectedChartPath = songList[currentSongIndex].chartpath;
         selectedImagePath = songList[currentSongIndex].imagepath;
         SoundManager::Instance()->loadMusic("menu", selectedMusicPath);
-        SoundManager::Instance()->playMusic("menu", 11);
+        SoundManager::Instance()->playMusic("menu", 1);
     }
 
     if (InputHandler::Instance()->isKeyPressed(SDLK_RIGHT)) {
