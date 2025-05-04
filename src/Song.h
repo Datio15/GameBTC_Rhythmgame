@@ -35,7 +35,19 @@ static std::vector<Song> songList = {
 		"assets/music/music4.mp3",
 		"assets/chart/chart4.txt",
 		"assets/image/XHero.jpg"
-	}
+},
+	{
+		"You Say Run",
+		"assets/music/music5.mp3",
+		"assets/chart/chart5.txt",
+		"assets/image/Deku.jpg"
+},
+	{
+		"IRWTSYH",
+		"assets/music/music6.mp3",
+		"assets/chart/chart6.txt",
+		"assets/image/Lucy.jpg"
+}
 
 };
 
