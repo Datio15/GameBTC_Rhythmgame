@@ -13,9 +13,6 @@ struct NoteEvent {
     int timeMs;
     int lane;
 };
-const int PERFECT_WINDOW = 30;
-const int GOOD_WINDOW = 80;
-const int BAD_WINDOW = 150;
 class ParticleSystem;
 class Game {
 public:
@@ -38,7 +35,6 @@ private:
     SDL_Window* window;
     SDL_Renderer* renderer;
 
-    Uint8 bgColorR, bgColorG, bgColorB;
     const int SCREEN_HEIGHT = 780;
     const int SCREEN_WIDTH = 600;
     const int Judgment_Line = SCREEN_HEIGHT - 100;
