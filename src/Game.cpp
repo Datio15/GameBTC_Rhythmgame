@@ -14,9 +14,6 @@ using namespace std;
 Game::Game() :
     window(nullptr),
     renderer(nullptr),
-    bgColorR(0),
-    bgColorG(0),
-    bgColorB(0),
     isRunning(false), comboDisplayTime(0),
     score(0){
     for (int i = 0; i < 4; i++) {
@@ -124,7 +121,7 @@ void Game::init(const char* title, int width, int height) {
 
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
         if (renderer) {
-            SDL_SetRenderDrawColor(renderer, bgColorR, bgColorG, bgColorB, 255);
+            SDL_SetRenderDrawColor(renderer, 0,0, 0, 255);
             cout << "Renderer created!" << endl;
         }
         else {
@@ -226,7 +223,7 @@ void Game::update() {
     }
 
         Uint32 currentTime = SDL_GetTicks() - startTimeMs;
-        while (nextNoteIndex < noteChart.size() && currentTime >= noteChart[nextNoteIndex].timeMs) {
+        if (nextNoteIndex < noteChart.size() && currentTime >= noteChart[nextNoteIndex].timeMs) {
             int lane = noteChart[nextNoteIndex].lane;
             notes.emplace_back(Note(lane * 150, 0, 150, 20, 6));
             nextNoteIndex++;
@@ -260,12 +257,12 @@ void Game::render() {
     if (menu->isMenuActive()) {
         menu->render();
     }
-    else if (afterGame && afterGame->isActive()) {
+    else if (afterGame->isActive()) {
         afterGame->render();
         return;
     }
     else {
-        SDL_SetRenderDrawColor(renderer, bgColorR, bgColorG, bgColorB, 255);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
         TextureManager::Instance()->draw("background", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, renderer);
